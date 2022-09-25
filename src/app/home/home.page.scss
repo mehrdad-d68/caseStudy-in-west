@@ -25,3 +25,18 @@
 #container a {
   text-decoration: none;
 }
+.alertClass{
+  left:0;
+  top:0;
+  z-index:1000;
+  height:100%;
+  width: 100%;
+  font-weight:bold;
+  font-size:20px;
+  // background-color: rgb(16, 250, 133);
+  display: block;
+  span{
+    display: flex;
+    margin: auto;
+  }
+}

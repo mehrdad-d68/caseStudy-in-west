@@ -1,0 +1,27 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="inputDiv">
+        <label for="account"> Name</label>
+        <input class="form-control" type="text" formControlName="text">
+    </div>
+    <div class="inputDiv">
+        <label for="IBAN">IBAN</label>
+        <input class="form-control" type="text" formControlName="IBAN">
+    </div>
+    <div class="inputDiv">
+        <label for="date">Date</label>
+            <input class="form-control" onkeypress="return false;" placeholder="yyyy-mm-dd"
+                   name="dp" formControlName="DATE" ngbDatepicker (click)="d.toggle()" #d="ngbDatepicker">
+    </div>
+    <div class="inputDiv">
+        <label for="amount">amount</label>
+        <input class="form-control" type="number" formControlName="amount" >
+    </div>
+    <div class="inputDiv">
+        <label for="note">note</label>
+        <input class="form-control" type="text" formControlName="note">
+    </div>
+    <div class="inputDiv ">
+        <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">SUBMIT</button>
+    </div>
+    
+</form>

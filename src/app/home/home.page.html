@@ -1,7 +1,16 @@
 <ion-header [translucent]="true">
+  
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title >
+      <div class="alertClass" *ngIf="mainService.showAlert.value.show"  >
+        <span class="text-center" [style.color]="mainService.showAlert.value.color">{{mainService.showAlert.value.text}}</span>
+      </div>
+      <ng-container *ngIf="!mainService.showAlert.value.show">
+        my first app
+        <button class="btn btn-success" (click)="openDialog2()">NEW</button>
+      </ng-container>
+      
+      
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,11 +19,40 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
+      
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <table class="table table-striped">
+    <tbody>
+    <ng-container *ngFor="let tile of (list$ | async);let i=index ">
+      <tr>
+      <th class="text-center">account</th>
+      <td class="text-center">{{tile.text}}</td>
+    </tr>
+    <tr>
+      <th class="text-center">IBAN</th>
+      <td class="text-center">{{tile.IBAN}}</td>
+    </tr>
+    <tr>
+      <th class="text-center">Date</th>
+      <td class="text-center"> {{tile.DATE.year + '.'+tile.DATE.month + '.' +tile.DATE.day  }}</td>
+    </tr>
+    <tr>
+      <th class="text-center">amount</th>
+      <td class="text-center">{{tile.amount | currency:'EUR':'symbol'}}</td>
+    </tr>
+    <tr>
+      <th class="text-center">note</th>
+      <td class="text-center"> {{tile.note}} </td>
+    </tr>
+    <tr style="border-bottom:2px solid rgb(214, 24, 24);margin-bottom:5px">
+      <td class="text-center" colspan="2">
+        <button type="button" id="editBtn" class="btn btn-primary btn-sm" (click)="openDialog(tile,i)">EDIT</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="deleteConfirmation(tile,i)">DELETE</button>
+      </td>
+    </tr>
+    </ng-container>
+  </tbody>
+  </table>
 </ion-content>
